@@ -61,14 +61,18 @@ export async function runCall(callId: string, candidate: db.Candidate, job: db.J
       greeting,
     });
     console.log(`Assistant created for ${candidate.name}: ${assistantId}`);
-
+    function formatPhone(phone:string) {
+      return phone.replace(/[\s\-]/g, '');
+    }
+    const to = formatPhone(candidate.phone);
     // 2. Initiate outbound call via POST /v1/calls — returns structured call_id
     const clawdtalkCallId = await initiateOutboundCall({
-      to: candidate.phone,
+      to,
       greeting,
-      purpose: instructions,
+      purpose: `Screening interview for ${job.title} with candidate ${candidate.name}.`,
       assistantId,
     });
+    console.log("try to initate")
     await db.setCallClawdtalkId(callId, clawdtalkCallId);
     await db.updateCandidateStatus(candidate.id, 'calling');
     console.log(`Call initiated for ${candidate.name}, ClawdTalk ID: ${clawdtalkCallId}`);
