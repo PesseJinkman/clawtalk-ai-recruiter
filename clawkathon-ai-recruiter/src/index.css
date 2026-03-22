@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 224 20% 7%;
+    --foreground: 210 20% 92%;
+    --card: 224 18% 10%;
+    --card-foreground: 210 20% 92%;
+    --popover: 224 18% 10%;
+    --popover-foreground: 210 20% 92%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 16% 16%;
+    --secondary-foreground: 210 20% 88%;
+    --muted: 220 14% 14%;
+    --muted-foreground: 215 14% 55%;
+    --accent: 220 16% 16%;
+    --accent-foreground: 210 20% 88%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 14% 18%;
+    --input: 220 14% 18%;
+    --ring: 217 91% 60%;
+    --radius: 0.5rem;
+    --sidebar-background: 224 20% 7%;
+    --sidebar-foreground: 210 20% 80%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 14%;
+    --sidebar-accent-foreground: 210 20% 88%;
+    --sidebar-border: 220 14% 18%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply bg-background min-h-screen;
+  }
+  .content-wrapper {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+  }
+  .card-surface {
+    @apply bg-card rounded-lg border border-border p-6 shadow-sm;
+  }
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:opacity-90 rounded-lg px-4 py-2 font-medium transition-all duration-150 active:scale-[0.97];
+  }
+  .btn-primary:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  .input-field {
+    @apply border border-input rounded-lg px-3 py-2 w-full bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-shadow;
+  }
+}
